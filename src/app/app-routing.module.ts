@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'gear-tracker',
+    loadChildren: () => import('./gear-tracker/gear-tracker.module').then( m => m.GearTrackerPageModule)
+  },
 ];
 
 @NgModule({

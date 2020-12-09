@@ -1,20 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar color="secondary">
     <ion-title>
-      Blank
+      War Dragons Gear Crafting Tracker App
     </ion-title>
+    <ion-button slot="end" *ngIf="craftingService.logout">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-text-center" >
+ 
+  <ion-list lines="none">
+  <ion-item class="ion-text-center">
+  <h2>The app for tracking and calculating gear crafting for Atlas events. </h2>
+</ion-item>
+<ion-item class="ion-text-center">
+  <h3>Log in or sign up to add gear to keep track of for the event.</h3>
+</ion-item>
+</ion-list>
+<ion-list *ngIf = "craftingService.loginSignup">
+  <ion-button (click)="login()" expand="full">Log in</ion-button>
+  <!-- <ion-button (click)="signup()" expand="full">Sign Up</ion-button> -->
+</ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button (click)="viewGear()" expand="full">View Gear</ion-button>
+<div *ngIf = "craftingService.show">
+  <ion-list *ngFor="let g of craftingService.gears">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{g.gear.elite}}
+      </ion-card-content>
+    </ion-card>
+      
+  </ion-list>
+</div>
 </ion-content>

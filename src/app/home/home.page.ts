@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CraftingService } from '../services/crafting.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,26 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public craftingService: CraftingService) {}
 
+    login():void{
+      this.craftingService.signInAnonymously();
+    }
+
+    logout():void{
+      this.craftingService.logoutUser();
+    }
+
+    viewGear():void{
+      
+      this.craftingService.show = !this.craftingService.show;
+
+      if(this.craftingService.show == true){
+        this.craftingService.getGear();
+      }else{
+        this.craftingService.gears = [];
+      }
+    }
+
+    
 }
